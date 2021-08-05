@@ -7,3 +7,5 @@ This utilizes fixes to the usb_msc code from
 and
 [https://github.com/lupyuen/bluepill-bootloader](here)
 .
+
+For a C++ compatible version, checkout [https://github.com/30350n/libopencm3-usb-msc-example/tree/cpp](the cpp branch).
