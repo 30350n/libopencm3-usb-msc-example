@@ -55,6 +55,8 @@ static const struct usb_endpoint_descriptor msc_endpoints[] =
 		.bmAttributes = USB_ENDPOINT_ATTR_BULK,
 		.wMaxPacketSize = MAX_PACKET_SIZE,
 		.bInterval = 0,
+		.extra = NULL,
+		.extralen = 0,
 	},
 	{
 		.bLength = USB_DT_ENDPOINT_SIZE,
@@ -63,6 +65,8 @@ static const struct usb_endpoint_descriptor msc_endpoints[] =
 		.bmAttributes = USB_ENDPOINT_ATTR_BULK,
 		.wMaxPacketSize = MAX_PACKET_SIZE,
 		.bInterval = 0,
+		.extra = NULL,
+		.extralen = 0,
 	}
 };
 
@@ -85,7 +89,9 @@ static const struct usb_interface_descriptor msc_interface =
 static const struct usb_interface usb_interfaces[] =
 {
 	{
+		.cur_altsetting = 0,
 		.num_altsetting = 1,
+		.iface_assoc = NULL,
 		.altsetting = &msc_interface,
 	}, 	
 };
