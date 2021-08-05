@@ -3,8 +3,6 @@
 #include <libopencm3/stm32/gpio.h>
 #include "usb/msc.h"
 
-#include <string.h>
-
 #include "ramdisk.h"
 
 #define MAX_PACKET_SIZE 64
@@ -28,7 +26,7 @@ enum usb_strings_index
 	MSC_NAME,
 };
 
-static const struct usb_device_descriptor device =
+static const usb_device_descriptor device =
 {
 	.bLength = USB_DT_DEVICE_SIZE,
 	.bDescriptorType = USB_DT_DEVICE,
@@ -46,7 +44,7 @@ static const struct usb_device_descriptor device =
 	.bNumConfigurations = 1,
 };
 
-static const struct usb_endpoint_descriptor msc_endpoints[] =
+static const usb_endpoint_descriptor msc_endpoints[] =
 {
 	{
 		.bLength = USB_DT_ENDPOINT_SIZE,
@@ -55,7 +53,7 @@ static const struct usb_endpoint_descriptor msc_endpoints[] =
 		.bmAttributes = USB_ENDPOINT_ATTR_BULK,
 		.wMaxPacketSize = MAX_PACKET_SIZE,
 		.bInterval = 0,
-		.extra = NULL,
+		.extra = nullptr,
 		.extralen = 0,
 	},
 	{
@@ -65,12 +63,12 @@ static const struct usb_endpoint_descriptor msc_endpoints[] =
 		.bmAttributes = USB_ENDPOINT_ATTR_BULK,
 		.wMaxPacketSize = MAX_PACKET_SIZE,
 		.bInterval = 0,
-		.extra = NULL,
+		.extra = nullptr,
 		.extralen = 0,
 	}
 };
 
-static const struct usb_interface_descriptor msc_interface =
+static const usb_interface_descriptor msc_interface =
 {
 	.bLength = USB_DT_INTERFACE_SIZE,
 	.bDescriptorType = USB_DT_INTERFACE,
@@ -82,26 +80,26 @@ static const struct usb_interface_descriptor msc_interface =
 	.bInterfaceProtocol = USB_MSC_PROTOCOL_BBB,
 	.iInterface = MSC_NAME,
 	.endpoint = msc_endpoints,
-	.extra = NULL,
+	.extra = nullptr,
 	.extralen = 0
 };
 
-static const struct usb_interface usb_interfaces[] =
+static const usb_interface usb_interfaces[] =
 {
 	{
 		.cur_altsetting = 0,
 		.num_altsetting = 1,
-		.iface_assoc = NULL,
+		.iface_assoc = nullptr,
 		.altsetting = &msc_interface,
 	}, 	
 };
 
-static const struct usb_config_descriptor config =
+static const usb_config_descriptor config =
 {
 	.bLength = USB_DT_CONFIGURATION_SIZE,
 	.bDescriptorType = USB_DT_CONFIGURATION,
 	.wTotalLength = 0,
-	.bNumInterfaces = sizeof(usb_interfaces) / sizeof(struct usb_interface),
+	.bNumInterfaces = sizeof(usb_interfaces) / sizeof(usb_interface),
 	.bConfigurationValue = 1,
 	.iConfiguration = 0,
 	.bmAttributes = 0x80,
